@@ -1,21 +1,63 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserList from './components/UserList.js';
+import UserNewForm from './components/UserNewForm.js';
+import axios from 'axios';
 
 class App extends Component {
+  state = {
+    users: [],
+  }
+
+  componentDidMount(){
+    axios.get("/users")
+    .then((response) => {
+      this.setState({users: response.data});
+    }).catch((error) => {
+      console.log("Error getting users");
+      console.log(error);
+    });
+  }
+
+  deleteUser = async (id, index) => {
+    try {
+      await axios.delete(`/users/${id}`);
+      const updatedUsers = [...this.state.users];
+      updatedUsers.splice(index, 1);
+      this.setState({users: updatedUsers});
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+
+  createUser = async (newUser) => {
+    try {
+      const newUserResponse = await axios.post('/users', newUser);
+      const newUserFromDb = newUserResponse.data;
+
+      const updatedUsersList = [...this.state.users];
+      updatedUsersList.push(newUserFromDb);
+      this.setState({users: updatedUsersList});
+      
+    } catch (error){
+      console.log(error);
+    }
+  }  
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <UserNewForm createUser={this.createUser}/>
+        <UserList users={this.state.users} deleteUser={this.deleteUser}/>
+
       </div>
     );
   }
+
+
 }
 
 export default App;
