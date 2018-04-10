@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${process.env.REACT_API_USERSAPI}/users`)
+    axios.get(`${process.env.REACT_API_USERSAPI}`)
     .then((response) => {
       this.setState({users: response.data});
     }).catch((error) => {
@@ -21,7 +21,7 @@ class App extends Component {
 
   deleteUser = async (id, index) => {
     try {
-      await axios.delete(`${process.env.REACT_API_USERSAPI}/users/${id}`);
+      await axios.delete(`${process.env.REACT_API_USERSAPI}/${id}`);
       const updatedUsers = [...this.state.users];
       updatedUsers.splice(index, 1);
       this.setState({users: updatedUsers});
@@ -33,7 +33,7 @@ class App extends Component {
 
   createUser = async (newUser) => {
     try {
-      const newUserResponse = await axios.post(`${process.env.REACT_API_USERSAPI}/users`, newUser);
+      const newUserResponse = await axios.post(`${process.env.REACT_API_USERSAPI}`, newUser);
       const newUserFromDb = newUserResponse.data;
 
       const updatedUsersList = [...this.state.users];
