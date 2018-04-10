@@ -44,7 +44,7 @@ dependencies {
 }
 
 task waitForUsersAPI(type: Exec) {
-    commandLine './wait-for-api.sh', 'http://localhost:8080/users', 'Users API'
+    commandLine './wait-for-api.sh', 'http://localhost:8081', 'Users API'
 }
 
 task runUsersAPITests(type: Exec) {
