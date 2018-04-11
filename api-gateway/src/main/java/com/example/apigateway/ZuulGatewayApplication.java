@@ -1,13 +1,15 @@
 package com.example.apigateway;
 
 import org.springframework.boot.SpringApplication;
+import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.util.Collection;
 
 @SpringBootApplication
 @EnableZuulProxy
@@ -28,6 +30,7 @@ public class ZuulGatewayApplication {
 		config.setAllowedMethods(Arrays.stream(Http.HttpMethod.values()).map(Http.HttpMethod::name).collect(Collectors.toList()));
 		source.registerCorsConfiguration("/**", config);
 		return new CorsFilter(source);
+
 	}
 }
 
