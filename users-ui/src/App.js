@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import UserList from './components/UserList.js';
 import UserNewForm from './components/UserNewForm.js';
+import UserSignInForm from './components/UserSignInForm.js';
+
 import axios from 'axios';
 
 class App extends Component {
@@ -52,7 +54,7 @@ class App extends Component {
       <div>
         <UserNewForm createUser={this.createUser}/>
         <UserList users={this.state.users} deleteUser={this.deleteUser}/>
-
+        <UserSignInForm />
       </div>
     );
   }

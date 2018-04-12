@@ -32,13 +32,15 @@ class UserNewForm extends Component{
 			borderRadius: "7px",
 			padding: "15px",
 		}
-
+		const labelStyle = {
+			display: "block",
+		}
 		return(
 			<div>
 				<h3>Sign Up</h3>
 				<form style={formStyle}>
 					<div>
-						<label>username
+						<label style={labelStyle}>username
 							<input
 								id="new-user-userName"
 								name="userName"
@@ -46,7 +48,7 @@ class UserNewForm extends Component{
 								onChange={this.handleChange}
 							/>
 						</label>
-						<label>First Name
+						<label style={labelStyle}>First Name
 							<input 
 								id="new-user-firstName"
 								name="firstName"
@@ -54,7 +56,7 @@ class UserNewForm extends Component{
 								onChange={this.handleChange}
 							/>	
 						</label>
-						<label>Last Name
+						<label style={labelStyle}>Last Name
 							<input
 								id="new-user-lastName"
 								name="lastName"
