@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class UserNewForm extends Component{
 	
 	state = {
-		newUser: {}
+		newUser: {},
 	}
 
 	handleSubmit = (event) => {
