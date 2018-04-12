@@ -3,12 +3,14 @@ import './App.css';
 import UserList from './components/UserList.js';
 import UserNewForm from './components/UserNewForm.js';
 import UserSignInForm from './components/UserSignInForm.js';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import axios from 'axios';
 
 class App extends Component {
   state = {
     users: [],
+    isLoggedIn: false,
   }
 
   componentDidMount(){
@@ -48,18 +50,27 @@ class App extends Component {
   }  
 
 
-
   render() {
+
+  const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} />);
+
     return (
-      <div>
-        <UserNewForm createUser={this.createUser}/>
-        <UserList users={this.state.users} deleteUser={this.deleteUser}/>
-        <UserSignInForm />
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={UserSignInForm} />
+
+          <Route exact path="/newUser" component={UserNewFormComponent} />
+        </Switch>
+      </Router>
     );
   }
 
 
+
 }
+
+        //createUser={this.createUser}
+          // <UserList users={this.state.users} deleteUser={this.deleteUser}/>
+          // <UserSignInForm />
 
 export default App;
