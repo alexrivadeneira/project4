@@ -35,33 +35,33 @@ class UserNewForm extends Component{
 
 		return(
 			<div>
-				<h2>Sign Up!!</h2>
+				<h3>Sign Up</h3>
 				<form style={formStyle}>
 					<div>
-						<h4>username</h4>
-						<input
-							id="new-user-userName"
-							name="userName"
-							type="text"
-							onChange={this.handleChange}
-						/>
-						<h4>First Name</h4>
-						<input 
-							id="new-user-firstName"
-							name="firstName"
-							type="text"
-							onChange={this.handleChange}
-						/>	
-						<h4>Last Name</h4>
-
-
-						<input
-							id="new-user-lastName"
-							name="lastName"
-							type="text"
-							onChange={this.handleChange}
-
-						/>	
+						<label>username
+							<input
+								id="new-user-userName"
+								name="userName"
+								type="text"
+								onChange={this.handleChange}
+							/>
+						</label>
+						<label>First Name
+							<input 
+								id="new-user-firstName"
+								name="firstName"
+								type="text"
+								onChange={this.handleChange}
+							/>	
+						</label>
+						<label>Last Name
+							<input
+								id="new-user-lastName"
+								name="lastName"
+								type="text"
+								onChange={this.handleChange}
+							/>	
+						</label>
 					</div>
 					<div>
 						<button
@@ -69,7 +69,7 @@ class UserNewForm extends Component{
 							value="Submit"
 							onClick={this.handleSubmit}
 						>
-							Submit!
+							Create User
 						</button>
 					</div>									
 				</form>
