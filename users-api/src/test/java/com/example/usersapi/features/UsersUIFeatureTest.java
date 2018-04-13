@@ -43,21 +43,39 @@ public class UsersUIFeatureTest {
                 "Person"
         );
 
+        userRepository.save(firstUser);
+        Long firstUserId = firstUser.getId();
+
         User secondUser = new User(
                 "someone_else",
                 "Someone",
                 "Else"
         );
 
-        Stream.of(firstUser, secondUser)
-                .forEach(user -> {
-                    userRepository.save(user);
-                });
+        secondUser = userRepository.save(secondUser);
+        Long secondUserId = secondUser.getId();
+
 
         System.setProperty("selenide.browser", "Chrome");
         open("http://localhost:3000");
 
         $("body").shouldHave(text("NYDataViewer Portal"));
+
+        //test adding a user
+        $("#new-user-userName").val("SonnyJim");
+        $("#new-user-firstName").val("Sonny");
+        $("#new-user-lastName").val("Jim");
+        $("#new-user-submit").click();
+
+        $$("[data-user-display").shouldHave(size(3));
+
+        // test deleting a user
+        $("#user-" + firstUserId).should(exist);
+        $("#delete-user-" + firstUserId).click();
+        $("#user-" + firstUserId).shouldNot(exist);
+        $$("[data-user-display]").shouldHave(size(2));
+    }
+
     }
 
 
