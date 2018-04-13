@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Document from './Document';
+import Document from './Document.js';
 import axios from 'axios';
-
+import SearchForm from './SearchForm.js';
 
 
 class DocumentList extends Component{
@@ -33,6 +33,7 @@ class DocumentList extends Component{
 	
 		return(
 			<div>
+				<SearchForm />
 				{documentsComponents}
 			</div>
 		);
