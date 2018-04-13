@@ -12,6 +12,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.stream.Stream;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class UsersUIFeatureTest {
@@ -49,5 +54,11 @@ public class UsersUIFeatureTest {
                     userRepository.save(user);
                 });
 
+        System.setProperty("selenide.browser", "Chrome");
+        open("http://localhost:3000");
+
+        $("body").shouldHave(text("NYDataViewer Portal"));
     }
+
+
 }
