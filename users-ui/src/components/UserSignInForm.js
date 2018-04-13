@@ -21,7 +21,7 @@ class UserSignInForm extends Component{
 
 	render(){
 		if(this.props.userIsLoggedIn){
-			return <Redirect to="/" />;
+			return <Redirect to="/documents" />;
 		}
 
 		const wrongUserNameMessage = this.props.wrongUserName ? <p>User not found!</p> : <p></p>;

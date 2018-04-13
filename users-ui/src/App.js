@@ -4,7 +4,7 @@ import UserList from './components/UserList.js';
 import UserNewForm from './components/UserNewForm.js';
 import UserSignInForm from './components/UserSignInForm.js';
 import Header from './components/Header.js';
-
+import DocumentList from './components/DocumentList.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import axios from 'axios';
@@ -16,6 +16,7 @@ class App extends Component {
     wrongUserName: false,
     userIsLoggedIn: false,
   }
+
 
   componentDidMount(){
     axios.get(`${process.env.REACT_APP_USERSAPI}/users`)
@@ -66,9 +67,13 @@ class App extends Component {
 
 
   render() {
+  document.body.style.width = "95%";
+  document.body.style.margin = "0 auto";
 
   const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} />);
   const UserSignInFormComponent = () => (<UserSignInForm userIsLoggedIn={this.state.userIsLoggedIn} signIn={this.signIn} wrongUserName={this.state.wrongUserName} />);
+
+  const DocumentListComponent = () => (<DocumentList />);
 
     return (
       <div>
@@ -76,8 +81,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={UserSignInFormComponent} />
-
             <Route exact path="/newUser" component={UserNewFormComponent} />
+            <Route exact path="/documents" component={DocumentListComponent} />
           </Switch>
         </Router>
       </div>
