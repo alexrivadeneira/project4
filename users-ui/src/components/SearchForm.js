@@ -7,9 +7,17 @@ class SearchForm extends Component{
 		limit: 10,
 	};
 
-	handleLimitChange(){
+	handleLimitChange = (event) => {
+		const limit = event.target.value;
+		this.setState({...limit});
+	};
 
+	handleSubmit = (event) => {
+		event.preventDefault();
+		this.props.updateResults	("dob", 5);
 	}
+
+
 
 	render(){
 		return(
@@ -20,7 +28,6 @@ class SearchForm extends Component{
 					  <option value="newdriver">New Driver Application Status</option>
 					  <option value="forhire">For Hire Vehicles</option>
 					</select>
-					<br/><br/>
 					<label>Limit 
 						<input 
 							id="limit"
@@ -28,7 +35,14 @@ class SearchForm extends Component{
 							type="text"
 							onChange={this.handleLimitChange}
 						/>	
-					</label>					
+					</label>
+					<button
+						id="new-search-submit"
+						value="Submit"
+						onClick={this.handleSubmit}
+					>
+						Update Results
+					</button>										
 				</form>
 			</div>
 		);

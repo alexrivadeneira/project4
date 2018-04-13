@@ -10,6 +10,28 @@ class DocumentList extends Component{
 		documents: [],
 	}
 
+	updateResults = (topic, limit) => {
+		const topicCodeDict = {
+			"dob": "ic3t-wcy2",
+			"new-driver": "dpec-ucu7",
+			"for-hire": "8wbx-tsch",
+		};
+		const request = "https://data.cityofnewyork.us/resource/";
+		const requestTopicLimit = request + topicCodeDict[topic] + "?$limit=" + limit;
+
+
+		console.log(">>>>", requestTopicLimit);
+
+		axios.get(requestTopicLimit)
+			.then((response) => {
+				console.log("got here", response.data);
+				this.setState({documents: response.data})
+			}).catch((error) => {
+				console.log("ERROR FILTERING DOCS");
+				console.log(error);
+			});
+	}
+
 	componentDidMount(){
 		axios.get('https://data.cityofnewyork.us/resource/buex-bi6w.json?$limit=50')
 		.then((response) => {
@@ -33,7 +55,9 @@ class DocumentList extends Component{
 	
 		return(
 			<div>
-				<SearchForm />
+				<SearchForm 
+					updateResults={this.updateResults}
+				/>
 				{documentsComponents}
 			</div>
 		);
