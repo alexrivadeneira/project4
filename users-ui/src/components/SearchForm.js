@@ -3,18 +3,24 @@ import React, {Component} from 'react';
 class SearchForm extends Component{
 
 	state = {
-		category: "dob",
+		category: "promos",
 		limit: 10,
 	};
 
 	handleLimitChange = (event) => {
 		const limit = event.target.value;
-		this.setState({...limit});
+		this.setState({limit: limit});
 	};
+
+	handleCategoryChange = (event) => {
+		const category = event.target.value;
+		console.log("category change", event.target.value);
+		this.setState({category: category});
+	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.updateResults	("dob", 5);
+		this.props.updateResults(this.state.category, this.state.limit);
 	}
 
 
@@ -23,7 +29,10 @@ class SearchForm extends Component{
 		return(
 			<div>
 				<form>
-					<select>
+					<select
+						onChange={this.handleCategoryChange}
+					>
+						<option value="promos">Agency Promotions</option>
 					  <option value="dob">DOB Job Application Filings</option>
 					  <option value="newdriver">New Driver Application Status</option>
 					  <option value="forhire">For Hire Vehicles</option>
