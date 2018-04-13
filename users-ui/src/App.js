@@ -14,6 +14,7 @@ class App extends Component {
     users: [],
     userName: null,
     wrongUserName: false,
+    userIsLoggedIn: false,
   }
 
   componentDidMount(){
@@ -42,9 +43,9 @@ class App extends Component {
 
     if(filteredUsers.length >= 1){
       this.setState({userName: filteredUsers[0].userName});
+      this.setState({userIsLoggedIn: true});
     } else {
       this.setState({wrongUserName: true});
-      console.log("got wrong username");
     }
 
   }
@@ -67,11 +68,11 @@ class App extends Component {
   render() {
 
   const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} />);
-  const UserSignInFormComponent = () => (<UserSignInForm signIn={this.signIn} />);
+  const UserSignInFormComponent = () => (<UserSignInForm userIsLoggedIn={this.state.userIsLoggedIn} signIn={this.signIn} wrongUserName={this.state.wrongUserName} />);
 
     return (
       <div>
-        <Header userName={this.state.userName} wrongUserName={this.state.wrongUserName}/>
+        <Header userName={this.state.userName} />
         <Router>
           <Switch>
             <Route exact path="/" component={UserSignInFormComponent} />

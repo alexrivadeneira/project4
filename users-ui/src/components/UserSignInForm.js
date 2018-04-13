@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
 class UserSignInForm extends Component{
 
@@ -19,8 +20,11 @@ class UserSignInForm extends Component{
 	}
 
 	render(){
+		if(this.props.userIsLoggedIn){
+			return <Redirect to="/" />;
+		}
 
-		const wrongUserNameMessage = this.props.wrongUserName ? <p>NO MESSA</p> : <p>hi</p>;
+		const wrongUserNameMessage = this.props.wrongUserName ? <p>User not found!</p> : <p></p>;
 
 		const formStyle = {
 			background: "#bada55",

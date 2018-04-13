@@ -15,7 +15,7 @@ class Header extends Component{
 		const clearStyle = {
 			clear: "both",
 		}
-		const greetingArea = this.props.userName ? this.props.userName : <a href="/">Sign In</a>;
+		const greetingArea = this.props.userName ? <p>Welcome, {this.props.userName}</p> : <a href="/">Sign In</a>;
 							
 		return(
 			<div>
