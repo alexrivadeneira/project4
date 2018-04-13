@@ -16,8 +16,7 @@ class Header extends Component{
 			clear: "both",
 		}
 		const greetingArea = this.props.userName ? this.props.userName : <a href="/">Sign In</a>;
-								
-
+							
 		return(
 			<div>
 				<div style={headerLeft}>

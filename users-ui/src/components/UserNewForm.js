@@ -15,7 +15,7 @@ class UserNewForm extends Component{
 		const updatedProperty = event.target.name;
 		const newValue = event.target.value
 
-		const updatedUser = { ...this.state.newUser}
+		const updatedUser = { ...this.state.newUser};
 		updatedUser[updatedProperty] = newValue;
 		this.setState({newUser: updatedUser});
 

@@ -2,18 +2,25 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 class UserSignInForm extends Component{
-	
-	state = {
-		newUser: {}
-	}
 
+	state = {
+		updatedUserName: "",
+	};
+	
 	// check the DB to see if user is there
 	handleSubmit = (event) => {
 		event.preventDefault();
-		this.props.createUser(this.state.newUser);
+		this.props.signIn(this.state.updatedUserName);
+	}
+
+	handleChange = (event) => {
+		const updatedUserName = event.target.value;
+		this.setState({updatedUserName: updatedUserName});
 	}
 
 	render(){
+
+		const wrongUserNameMessage = this.props.wrongUserName ? <p>NO MESSA</p> : <p>hi</p>;
 
 		const formStyle = {
 			background: "#bada55",
@@ -36,6 +43,7 @@ class UserSignInForm extends Component{
 								id="signin-user-userName"
 								name="userName"
 								type="text"
+								onBlur={this.handleChange}
 							/>
 						</label>
 					</div>
@@ -48,6 +56,7 @@ class UserSignInForm extends Component{
 							Sign In
 						</button>
 					</div>	
+					{wrongUserNameMessage}
 					<Link to="/newUser">...or Sign Up</Link>			
 				</form>
 			</div>

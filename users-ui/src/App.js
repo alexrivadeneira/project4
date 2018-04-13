@@ -13,7 +13,7 @@ class App extends Component {
   state = {
     users: [],
     userName: null,
-    isLoggedIn: false,
+    wrongUserName: false,
   }
 
   componentDidMount(){
@@ -37,6 +37,17 @@ class App extends Component {
     }
   }
 
+  signIn = (userName) => {
+    const filteredUsers = this.state.users.filter(user => userName === user.userName);
+
+    if(filteredUsers.length >= 1){
+      this.setState({userName: filteredUsers[0].userName});
+    } else {
+      this.setState({wrongUserName: true});
+      console.log("got wrong username");
+    }
+
+  }
 
   createUser = async (newUser) => {
     try {
@@ -56,13 +67,14 @@ class App extends Component {
   render() {
 
   const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} />);
+  const UserSignInFormComponent = () => (<UserSignInForm signIn={this.signIn} />);
 
     return (
       <div>
-        <Header />
+        <Header userName={this.state.userName} wrongUserName={this.state.wrongUserName}/>
         <Router>
           <Switch>
-            <Route exact path="/" component={UserSignInForm} />
+            <Route exact path="/" component={UserSignInFormComponent} />
 
             <Route exact path="/newUser" component={UserNewFormComponent} />
           </Switch>
