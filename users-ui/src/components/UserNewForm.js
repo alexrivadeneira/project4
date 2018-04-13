@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Route, Redirect} from 'react-router-dom';
 
 class UserNewForm extends Component{
 	
@@ -22,7 +23,10 @@ class UserNewForm extends Component{
 	}
 
 	render(){
-
+		if(this.props.userIsLoggedIn){
+			return <Redirect to="/documents" />;
+		}
+		
 		const formStyle = {
 			width: "70%",
 			margin: "0 auto",

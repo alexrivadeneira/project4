@@ -59,6 +59,8 @@ class App extends Component {
       const updatedUsersList = [...this.state.users];
       updatedUsersList.push(newUserFromDb);
       this.setState({users: updatedUsersList});
+      this.setState({userName: newUserFromDb.userName});
+      this.setState({userIsLoggedIn: true});      
       
     } catch (error){
       console.log(error);
@@ -70,7 +72,7 @@ class App extends Component {
   document.body.style.width = "95%";
   document.body.style.margin = "0 auto";
 
-  const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} />);
+  const UserNewFormComponent = () => (<UserNewForm createUser={this.createUser} userIsLoggedIn={this.state.userIsLoggedIn} />);
   const UserSignInFormComponent = () => (<UserSignInForm userIsLoggedIn={this.state.userIsLoggedIn} signIn={this.signIn} wrongUserName={this.state.wrongUserName} />);
 
   const DocumentListComponent = () => (<DocumentList />);
