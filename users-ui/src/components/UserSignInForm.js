@@ -27,13 +27,18 @@ class UserSignInForm extends Component{
 		const wrongUserNameMessage = this.props.wrongUserName ? <p>User not found!</p> : <p></p>;
 
 		const formStyle = {
-			background: "#bada55",
 			width: "70%",
 			margin: "0 auto",
-			borderRight: "3px solid black",
+			border: "1px solid black",
+			borderRight: "5px solid black",
 			borderBottom: "5px solid black",
 			borderRadius: "7px",
 			padding: "15px",
+		}
+
+		const inputStyle = {
+			padding: "15px",
+			display: "block",
 		}
 
 
@@ -42,7 +47,7 @@ class UserSignInForm extends Component{
 				<h3>Sign In</h3>
 				<form style={formStyle}>
 					<div>
-						<label>username
+						<label style={inputStyle}>username
 							<input
 								id="signin-user-userName"
 								name="userName"

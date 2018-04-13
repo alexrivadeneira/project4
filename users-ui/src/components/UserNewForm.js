@@ -24,10 +24,10 @@ class UserNewForm extends Component{
 	render(){
 
 		const formStyle = {
-			background: "#bada55",
 			width: "70%",
 			margin: "0 auto",
-			borderRight: "3px solid black",
+			border: "1px solid black",
+			borderRight: "5px solid black",
 			borderBottom: "5px solid black",
 			borderRadius: "7px",
 			padding: "15px",
