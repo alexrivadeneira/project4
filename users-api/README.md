@@ -3,7 +3,7 @@ Below you will find:
 - how to start the app,
 - and how to run the tests.
 
-## About this Application
+## About this Application - Project 4 for SECA
 
 This work in progress application is the beginning of an interface that's supposed to be built on top of data from the New York City data API.
 The main objective with this application was to test every aspect of setting up a basic user model.  In this applicaiton you will find API feature tests, integration tests and basic UI tests testing CRUD functionality via a React user interface.
